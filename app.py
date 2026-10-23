@@ -1,9 +1,8 @@
 import streamlit as st
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 from google import genai
-import os
-api_key = st.secrets["GEMINI_API_KEY"]
-# load_dotenv()
+
+load_dotenv()
 client = genai.Client()
 
 st.title("Agri-Pest Diagnostic Assistant")
