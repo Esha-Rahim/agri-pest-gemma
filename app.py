@@ -14,10 +14,11 @@ if st.button("Diagnose"):
     if not symptom:
         st.error("Please enter a symptom description.")
     else:
-        system_prompt = system_prompt = f"""You are an agricultural expert in Punjab, Pakistan. 
+        system_prompt = f"""You are an agricultural expert in Punjab, Pakistan. 
         The user has provided a crop symptom in either English or Urdu: '{symptom}'. 
         Analyze the symptom and identify the most likely local pest. 
         Provide a concise, 3-bullet treatment plan including non-chemical methods and local chemical controls. 
+        Add one brief recommendation for a general recovery fertilizer to help the plant survive the pest stress. Do not provide specific mathematical quantities or land-size ratios.
         Structure your output into two strict sections:
         First, the complete response in English.
         Second, the complete response translated into proper Urdu script (اردو). You must not include any English words, Latin characters, or brackets in the Urdu section. Translate pest names and chemicals directly into Urdu script."""
