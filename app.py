@@ -1,9 +1,8 @@
 import streamlit as st
-from dotenv import load_dotenv
 from google import genai
 
-load_dotenv()
-client = genai.Client()
+# Explicitly load the API key from Streamlit Secrets
+client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 
 st.title("Agri-Pest Diagnostic Assistant")
 st.write("Diagnose crop issues and get local treatment plans for Pakistani farmers.")
@@ -23,13 +22,14 @@ if st.button("Diagnose"):
         First, the complete response in English.
         Second, the complete response translated into proper Urdu script (اردو). You must not include any English words, Latin characters, or brackets in the Urdu section. Translate pest names and chemicals directly into Urdu script."""
         
-        with st.spinner("Analyzing with Gemma 4..."):
+        with st.spinner("Analyzing with Google Gemini API..."):
             try:
+                # Must use a valid Gemini model string, not a local Gemma filename
                 response = client.models.generate_content(
-                    model="gemma-4-26b-a4b-it",
+                    model="gemini-2.5-flash",
                     contents=system_prompt,
                 )
                 st.success("Diagnosis Complete")
                 st.write(response.text)
             except Exception as e:
-                st.error(f"Error calling API: Verify your .env file and API key. Details: {e}")
+                st.error(f"Error calling API: Verify your Streamlit Secrets. Details: {e}")
