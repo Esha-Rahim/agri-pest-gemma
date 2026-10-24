@@ -26,7 +26,7 @@ if st.button("Diagnose"):
             try:
                 # Must use a valid Gemini model string, not a local Gemma filename
                 response = client.models.generate_content(
-                    model="gemini-3.8-flash",
+                    model="gemini-3.8-pro",
                     contents=system_prompt,
                 )
                 st.success("Diagnosis Complete")
